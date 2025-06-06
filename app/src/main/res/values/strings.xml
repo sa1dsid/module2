@@ -2,4 +2,5 @@
     <string name="app_name">ToastAndService</string>
     <string name="start">start</string>
     <string name="stop">stop</string>
+    <string name="contacts">Contacts</string>
 </resources>

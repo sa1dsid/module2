@@ -30,8 +30,8 @@ class CountingService: android.app.Service() {
     }
 
     override fun onDestroy() {
+рефа        coroutineScope.cancel()
         super.onDestroy()
-        coroutineScope.cancel()
     }
 
     override fun onBind(intent: Intent?): IBinder? {

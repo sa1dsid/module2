@@ -23,17 +23,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        batteryLowReceiver = BatteryLowReceiver()
         Log.d("said", "onCreate")
         enableEdgeToEdge()
         setContentView(binding.root)
+        val intent = Intent(this, CountingService::class.java)
 
         // кнопки для запуска/остановки сервиса
         binding.buttonStart.setOnClickListener{
-            val intent = Intent(this, CountingService::class.java)
             startService(intent)
         }
         binding.buttonStop.setOnClickListener{
-            val intent = Intent(this, CountingService::class.java)
             stopService(intent)
         }
 
@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         // реагирование рисивера на 2 события
-        batteryLowReceiver = BatteryLowReceiver()
         val intentFilter: IntentFilter = IntentFilter().apply {
             addAction(	Intent.ACTION_POWER_CONNECTED)
             addAction(Intent.ACTION_POWER_DISCONNECTED)
